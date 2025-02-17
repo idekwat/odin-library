@@ -1,4 +1,40 @@
+* {
+    padding: 0;
+    margin: 0;
+}
 body {
     background-color: azure;
 }
+
+.heading {
+    height: 150px;
+    outline: 2px solid black;
+}
+
+.bookContainer {
+    outline: 2px solid red;
+    display: grid;
+    padding: 20px;
+
+    #myBooks {
+        margin-bottom: 20px;
+    }
+    #addButton {
+        min-height: 300px;
+        min-width: 225px;
+    }
+
+    .booklist {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+        gap: 10px;
+        overflow: auto;
+    }
+
+    .modalContent {
+        height: 40%;
+        width: 40%;
+    }
+}
+
 
