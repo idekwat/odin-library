@@ -5,11 +5,10 @@ const bookForm = document.getElementById("newBook");
 const submitData = document.getElementById("submitButton");
 const bookColumn = document.querySelector(".bookList");
 
-function Book(title, author, pages) { //read
-    const book = new Array([title, author, pages]); //read
+function Book(newTitle, newAuthor, newPagenum) { //read
+    const book = new Array({title:newTitle, author:newAuthor, pages:newPagenum, isRead:false}); //read
     myLibrary.push(book);
     console.log(myLibrary);
-    bookLibrary(myLibrary);
 }
 
 function addBook() {
@@ -18,16 +17,13 @@ function addBook() {
 
 submitData.onclick = (e) => {
     e.preventDefault();
-    let title = document.getElementById("bookTitle").value;
-    let author = document.getElementById("bookAuthor").value;
-    let pages = document.getElementById("pageTotal").value;
-   // let read = document.getElementById("readStatus").value;
-    Book(title, author, pages)//, read);
+    let newTitle = document.getElementById("bookTitle").value;
+    let newAuthor = document.getElementById("bookAuthor").value;
+    let newPagenum = document.getElementById("pageTotal").value;
+    Book(newTitle, newAuthor, newPagenum);
 }
 
-function bookLibrary(currentbooks) {    
-    const displayBook = document.createElement("div");
-    displayBook.textContent = currentbooks.map((book) => book.title + " S P A C E ");
-    bookColumn.appendChild(displayBook);
-}
 
+function bookLibrary() {
+    console.log(myLibrary.length);
+}
