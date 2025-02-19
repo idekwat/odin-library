@@ -9,31 +9,38 @@ body {
 .heading {
     height: 150px;
     outline: 2px solid black;
+
+
+    #addButton {
+        min-height: 100px;
+        min-width: 100px;
 }
+}
+
 
 .bookContainer {
     outline: 2px solid red;
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 20px;
 
     #myBooks {
         margin-bottom: 20px;
     }
-    #addButton {
-        min-height: 300px;
-        min-width: 225px;
-    }
-
-    .booklist {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-        gap: 10px;
-        overflow: auto;
-    }
 
     .modalContent {
-        height: 40%;
-        width: 40%;
+        height: 20%;
+        width: 20%;
+        text-align: center;
+        padding: 20px;
+
+        input {
+            height: 30px;
+            margin-bottom: 10px;
+            width: 90%;
+        }
     }
 }
 
