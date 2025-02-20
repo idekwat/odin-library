@@ -13,28 +13,18 @@
             <button id="addButton" onclick="addBook()">add book</button>
         </div>
         <div class="bookContainer">
-            <p id="myBooks"> My Books!</p>
-            <div class = "bookList">
-                <dialog class="modalContent" id="newBook">
-                    <form>  
-                        <input type="text" id="bookTitle" name="bookTitle" placeholder="Title"> <br>
-                        <input type="text" id="bookAuthor" name="bookAuthor" placeholder="Author"><br>
-                        <input type="number" id="pageTotal" name="pageTotal" placeholder="Number of Pages" min="1" max="9999"><br>
-                     <!--   <input type="checkbox" id="readStatus" name="readStatus" value=true>
-                        <label for="readStatus">Read</label> -->
-                        <input type="submit" value="submit" id="submitButton">
-                    </form>
-                </dialog>
-            </div>
+            <dialog class="modalContent" id="newBook">
+                <form>  
+                    <input type="text" id="bookTitle" name="bookTitle" placeholder="Title"> <br>
+                    <input type="text" id="bookAuthor" name="bookAuthor" placeholder="Author"><br>
+                    <input type="number" id="pageTotal" name="pageTotal" placeholder="Number of Pages" min="1" max="9999"><br>
+                    <div class="askRead">Have you finished reading this?<input type="checkbox" id="readStatus" name="readStatus"></div>
+                    <input type="submit" value="submit" id="submitButton">
+                </form>
+            </dialog>
+            <div class = "bookList"></div>
         </div>
     </div>
     <script src="scripts.js"></script>
 </body>
 </html>
-
-<!--
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    -->
