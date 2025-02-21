@@ -20,6 +20,9 @@ function Book(title, author, pages, readval) {
 function addBook() {
     bookForm.showModal();
 }
+function closeForm() {
+    bookForm.close();
+}
 
 submitData.onclick = (e) => {
     e.preventDefault();
