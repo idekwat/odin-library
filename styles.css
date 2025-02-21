@@ -53,6 +53,36 @@ body {
         margin-bottom: 20px;
     }
 
+    .bookDisplay {
+        height: clamp(30vh, 35vh, 40vh);
+        width: clamp(30vh, 35vh, 40vh);
+        text-align: center;
+        text-wrap: wrap;
+        display: inline-flex;
+        padding: 10px;
+        align-items: center;
+        flex-direction: column;
+        margin: 20px;
+        border-radius: 2px;
+        box-shadow: 6px 6px 10px gray;
+
+        #displayTitle {
+            font-size: 1.8em;
+            margin: 10px auto 10px auto;
+            text-shadow: 1px black;
+        }
+
+        #displayAuthor {
+            font-size: 0.8em;
+            margin-bottom: 10px;
+        }
+
+        #displayPages {
+            font-size: 0.6em;
+            margin-bottom: 10px;
+        }
+    }
+
     /*
     .modalContent {
         height: 60vh;

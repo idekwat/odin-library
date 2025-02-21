@@ -20,9 +20,6 @@ function Book(title, author, pages, readval) {
 function addBook() {
     bookForm.showModal();
 }
-function closeForm() {
-    bookForm.close();
-}
 
 submitData.onclick = (e) => {
     e.preventDefault();
@@ -41,7 +38,6 @@ submitData.onclick = (e) => {
 }
 
 function displayBooks() {
-    bookForm.close();
     const bookDisplay = document.createElement("div");
     const readSlider = document.createElement("input");
     const displayTitle = document.createElement("p");
@@ -49,48 +45,48 @@ function displayBooks() {
     const displayPages = document.createElement("p");
     const delButton = document.createElement("button");
 
-    for(let bookCount = 0; bookCount < myLibrary.length; bookCount++) {
-        displayTitle.innerText = myLibrary[bookCount].title;
-        displayAuthor.innerText = "by " + myLibrary[bookCount].author;
-        displayPages.innerText = myLibrary[bookCount].pages +" pages";
+    bookDisplay.className = "bookDisplay";
+
+    for(let bookIndex = 0; bookIndex < myLibrary.length; bookIndex++) {
+        displayTitle.innerText = myLibrary[bookIndex].title;
+        displayAuthor.innerText = "by " + myLibrary[bookIndex].author;
+        displayPages.innerText = myLibrary[bookIndex].pages +" pages";
         delButton.innerText = "del";
-        switch(myLibrary[bookCount].readval) {
+
+        displayTitle.id = "displayTitle";
+        displayAuthor.id = "displayAuthor";
+        displayPages.id = "displyPages";
+        delButton.id = "delButton";
+
+
+        switch(myLibrary[bookIndex].readval) {
             case true:
                 readSlider.checked = true;
+                console.log(myLibrary[bookIndex].title + " is read");
                 break;
             case false:
                 readSlider.checked = false;
+                console.log(myLibrary[bookIndex].title + " unread");
                 break;
         }
         bookDisplay.appendChild(displayTitle);
-        bookDisplay.append(displayAuthor);
-        bookDisplay.append(displayPages);
-        bookDisplay.append(readSlider);
-        bookDisplay.append(delButton);
+        bookDisplay.append(displayAuthor, displayPages, readSlider, delButton);
         
         delButton.onclick = (e) => {
-            bookColumn.removeChild(bookDisplay);
+            deleteBook(bookDisplay, this.bookIndex)
         }
     }
+
     let randomColorR = (Math.random()*128) + 127;
     let randomColorG = (Math.random()*128) + 127;
     let randomColorB = (Math.random()*128) + 127;
 
-    bookDisplay.style.textAlign = "center";
-    bookDisplay.style.textWrap = "wrap";
-    bookDisplay.style.height = "clamp(30vh, 35vh, 40vh)";
-    bookDisplay.style.width = "clamp(30vh, 35vh, 40vh)";
-    bookDisplay.style.backgroundColor = "rgb(" + randomColorR+ ", " + randomColorG + ", " + randomColorB + ")";
-    bookDisplay.style.display = "inline-flex";
-    bookDisplay.style.padding = "10px";
-    bookDisplay.style.alignItems = "center";
-    bookDisplay.style.flexDirection = "column";
-    bookDisplay.style.margin = "20px";
-    bookDisplay.style.borderRadius = "2px";
-    bookDisplay.style.boxShadow = "6px 6px 10px gray";
+    function deleteBook(displayed, thisbook) {
+        bookColumn.removeChild(displayed);
+        myLibrary.splice(thisbook, 1);
+    }
 
-    displayTitle.style.fontSize = "1.4em";
-    displayTitle.style.marginTop = "10px";
+    bookDisplay.style.backgroundColor = "rgb(" + randomColorR+ ", " + randomColorG + ", " + randomColorB + ")";
 
     displayAuthor.style.fontSize = "0.8em";
     displayPages.style.fontSize = "0.6em";
