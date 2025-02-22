@@ -39,7 +39,7 @@ submitData.onclick = (e) => {
 
 function displayBooks() {
     const bookDisplay = document.createElement("div");
-    const readSlider = document.createElement("input");
+    const isRead = document.createElement("input");
     const displayTitle = document.createElement("p");
     const displayAuthor = document.createElement("p");
     const displayPages = document.createElement("p");
@@ -58,42 +58,59 @@ function displayBooks() {
         displayPages.id = "displyPages";
         delButton.id = "delButton";
 
-
-        switch(myLibrary[bookIndex].readval) {
-            case true:
-                readSlider.checked = true;
-                console.log(myLibrary[bookIndex].title + " is read");
-                break;
-            case false:
-                readSlider.checked = false;
-                console.log(myLibrary[bookIndex].title + " unread");
-                break;
-        }
         bookDisplay.appendChild(displayTitle);
-        bookDisplay.append(displayAuthor, displayPages, readSlider, delButton);
-        
+        bookDisplay.append(displayAuthor, displayPages, isRead, delButton);
+
         delButton.onclick = (e) => {
-            deleteBook(bookDisplay, this.bookIndex)
+            alert(this.bookIndex + " will now be deleted from your library");
+            deleteBook(bookDisplay, this.bookIndex);
         }
-    }
+
+        Object.getPrototypeOf(Book.prototype);
+        Book.prototype.sayTitle();
+
+
+        /*
+        isRead.onchange = (e) => {
+            Book.prototype.readStatus(isRead.checked,this.bookIndex);
+        }*/
 
     let randomColorR = (Math.random()*128) + 127;
     let randomColorG = (Math.random()*128) + 127;
     let randomColorB = (Math.random()*128) + 127;
 
-    function deleteBook(displayed, thisbook) {
-        bookColumn.removeChild(displayed);
-        myLibrary.splice(thisbook, 1);
-    }
-
     bookDisplay.style.backgroundColor = "rgb(" + randomColorR+ ", " + randomColorG + ", " + randomColorB + ")";
 
-    displayAuthor.style.fontSize = "0.8em";
-    displayPages.style.fontSize = "0.6em";
-
-    readSlider.setAttribute("type", "checkbox");
-    readSlider.style.marginTop = "auto";
+    isRead.setAttribute("type", "checkbox");
+    isRead.style.marginTop = "auto";
 
     bookColumn.appendChild(bookDisplay);
-
+    }
 }
+
+function deleteBook(displayed, thisbook) {
+    bookColumn.removeChild(displayed);
+    myLibrary.splice(thisbook, 1);
+}
+
+
+Book.prototype.sayTitle = function() {
+}
+
+/*
+Book.prototype.toggleRead = function(bookRead) {
+    switch(bookRead) {
+        case(true):
+        this.readval = true;
+        console.log(this.title + " is read");
+        break;
+        case(false):
+        this.readval = false;
+        console.log(" is unread");
+        break;
+    }   
+} */
+
+
+
+
