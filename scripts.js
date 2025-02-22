@@ -51,8 +51,6 @@ function displayBooks() {
 
     console.log(myLibrary);
 
-
-    
     /*
     for(let bookIndex = 0; bookIndex < myLibrary.length; bookIndex++) {
         
