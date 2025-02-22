@@ -1,6 +1,6 @@
 
 const myLibrary = [];
-const newBook = document.getElementById("addButton");
+const newButton = document.getElementById("addButton");
 const bookForm = document.getElementById("newBook");
 const submitData = document.getElementById("submitButton");
 const bookColumn = document.querySelector(".bookList");
@@ -12,11 +12,12 @@ function Book(title, author, pages, readval) {
     this.author = author;
     this.pages = pages;
     this.readval = readval;
-    this.info = function() {
-        return this;
-    }
+    return this;
 }
 
+newButton.onclick = (e) => {
+    addBook();
+}
 function addBook() {
     bookForm.showModal();
 }
@@ -38,54 +39,62 @@ submitData.onclick = (e) => {
 }
 
 function displayBooks() {
-    const bookDisplay = document.createElement("div");
-    const isRead = document.createElement("input");
     const displayTitle = document.createElement("p");
     const displayAuthor = document.createElement("p");
     const displayPages = document.createElement("p");
     const delButton = document.createElement("button");
+    const toggleRead = document.createElement("button");
+
+    const bookDisplay = document.createElement("div");
 
     bookDisplay.className = "bookDisplay";
 
+    console.log(myLibrary);
+
+
+    
+    /*
     for(let bookIndex = 0; bookIndex < myLibrary.length; bookIndex++) {
+        
         displayTitle.innerText = myLibrary[bookIndex].title;
         displayAuthor.innerText = "by " + myLibrary[bookIndex].author;
         displayPages.innerText = myLibrary[bookIndex].pages +" pages";
         delButton.innerText = "del";
+
+        let bookread = myLibrary[bookIndex].readval;
 
         displayTitle.id = "displayTitle";
         displayAuthor.id = "displayAuthor";
         displayPages.id = "displyPages";
         delButton.id = "delButton";
 
+        switch(bookread) {
+            case(true):
+            toggleRead.innerText = bookread;
+            break;
+            case(false):
+            toggleRead.innerText = bookread;
+            break;
+        }
+
         bookDisplay.appendChild(displayTitle);
-        bookDisplay.append(displayAuthor, displayPages, isRead, delButton);
+        bookDisplay.append(displayAuthor, displayPages, delButton, toggleRead);
 
         delButton.onclick = (e) => {
-            alert(this.bookIndex + " will now be deleted from your library");
             deleteBook(bookDisplay, this.bookIndex);
         }
 
-        Object.getPrototypeOf(Book.prototype);
-        Book.prototype.sayTitle();
+        toggleRead.onclick = (e) => {
+            Book.prototype.changeRead(bookread);
+        }
 
-
-        /*
-        isRead.onchange = (e) => {
-            Book.prototype.readStatus(isRead.checked,this.bookIndex);
-        }*/
-
-    let randomColorR = (Math.random()*128) + 127;
-    let randomColorG = (Math.random()*128) + 127;
-    let randomColorB = (Math.random()*128) + 127;
-
-    bookDisplay.style.backgroundColor = "rgb(" + randomColorR+ ", " + randomColorG + ", " + randomColorB + ")";
-
-    isRead.setAttribute("type", "checkbox");
-    isRead.style.marginTop = "auto";
-
-    bookColumn.appendChild(bookDisplay);
-    }
+        let randomColorR = (Math.random()*128) + 127;
+        let randomColorG = (Math.random()*128) + 127;
+        let randomColorB = (Math.random()*128) + 127;
+        
+        bookDisplay.style.backgroundColor = "rgb(" + randomColorR+ ", " + randomColorG + ", " + randomColorB + ")";
+        bookColumn.appendChild(bookDisplay);
+    } */
 }
 
 function deleteBook(displayed, thisbook) {
@@ -93,24 +102,7 @@ function deleteBook(displayed, thisbook) {
     myLibrary.splice(thisbook, 1);
 }
 
-
-Book.prototype.sayTitle = function() {
+Book.prototype.changeRead = function(bookread) {
+    bookread = !bookread;
+    console.log(bookread);
 }
-
-/*
-Book.prototype.toggleRead = function(bookRead) {
-    switch(bookRead) {
-        case(true):
-        this.readval = true;
-        console.log(this.title + " is read");
-        break;
-        case(false):
-        this.readval = false;
-        console.log(" is unread");
-        break;
-    }   
-} */
-
-
-
-
