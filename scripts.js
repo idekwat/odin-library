@@ -19,7 +19,9 @@ function Book(title, author, pages, readval) {
 //prototype for toggling if Book is read/unread
 Book.prototype.changeRead = function(thisbook) {
     myLibrary[thisbook].readval = !myLibrary[thisbook].readval;
-    isBookRead(myLibrary[thisbook].readval);
+}
+Book.prototype.titleCheck = function(thisbook) {
+    alert(myLibrary[thisbook].title + " will now be deleted")
 }
 
 newButton.onclick = (e) => {
@@ -46,8 +48,17 @@ function addBook() {
             document.getElementById("pageTotal").value = "";
             document.getElementById("readStatus").checked = false;
         }
-        else {
-            alert("please complete the damn form");
+        else if(title.trim() == "") {
+            alert("Title is needed");
+        }
+        else if(author.trim() == "") {
+            alert("Author is needed");
+        }
+        else if(pages == "") {
+            alert("Number of pages is needed");
+        }
+        else{
+            console.log("wat");
         }
     }
 }
@@ -67,16 +78,26 @@ function displayBooks() {
 
     for(let bookIndex = 0; bookIndex < myLibrary.length; bookIndex++) {
         
-        console.log(myLibrary.length);
         displayTitle.innerText = myLibrary[bookIndex].title;
         displayAuthor.innerText = "by " + myLibrary[bookIndex].author;
         displayPages.innerText = myLibrary[bookIndex].pages +" pages";
-        toggleRead.innerText = myLibrary[bookIndex].readval;
+
+        switch(myLibrary[bookIndex].readval) {
+            case(false):
+            toggleRead.innerText = "Unread";
+            toggleRead.style.backgroundColor = "red";
+            break;
+            case(true):
+            toggleRead.innerText = "Read";
+            toggleRead.style.backgroundColor = "green";
+            break;
+        }
+
         delButton.innerText = "del";
 
         displayTitle.id = "displayTitle";
         displayAuthor.id = "displayAuthor";
-        displayPages.id = "displyPages";
+        displayPages.id = "displayPages";
         delButton.id = "delButton";
         toggleRead.id = "toggleButton";
 
@@ -84,13 +105,22 @@ function displayBooks() {
         bookDisplay.append(displayAuthor, displayPages, toggleRead, delButton);
 
         delButton.onclick = (e) => {
+            Book.prototype.titleCheck(bookIndex)
             deleteBook(bookDisplay, this.bookIndex);
         }
+
         toggleRead.onclick = (e) => {
-            const toggle = bookIndex;
-            Book.prototype.changeRead(toggle)
-            console.log(myLibrary);
-            toggleRead.innerText = myLibrary[toggle].readval;
+            Book.prototype.changeRead(bookIndex)
+            switch(myLibrary[bookIndex].readval) {
+                case(false):
+                toggleRead.innerText = "Unread";
+                toggleRead.style.backgroundColor = "red";
+                break;
+                case(true):
+                toggleRead.innerText = "Read";
+                toggleRead.style.backgroundColor = "green";
+                break;
+            }
         }
     }
 
@@ -102,17 +132,7 @@ function displayBooks() {
     bookColumn.appendChild(bookDisplay);
 }
 
-function isBookRead(readthis) {
-    switch(readthis){
-        case(true):
-        return "read";
-        case(false):
-        return "unread";
-    }
-}
-
 function deleteBook(displayed, thisbook) {
-    console.log(thisbook)
     bookColumn.removeChild(displayed);
     myLibrary.splice(thisbook, 1);
 }

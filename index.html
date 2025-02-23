@@ -14,12 +14,12 @@
         </div>
         <div class="bookContainer">
             <dialog class="modalContent" id="newBook">
-                <form name="form">  
-                    <input type="text" id="bookTitle" name="bookTitle" placeholder="Title"><br>
-                    <input type="text" id="bookAuthor" name="bookAuthor" placeholder="Author"><br>
+                <form name="form" id = "formContent">  
+                    <input type="text" id="bookTitle" name="bookTitle" placeholder="Title" maxlength="200"><br>
+                    <input type="text" id="bookAuthor" name="bookAuthor" placeholder="Author" maxlength="50"><br>
                     <input type="number" id="pageTotal" name="pageTotal" placeholder="Number of Pages" min="1" max="9999"><br>
-                    <div class="askRead">Have you finished reading this?<input type="checkbox" id="readStatus" name="readStatus"></div>
-                    <input type="submit" value="submit" id="submitButton">
+                    <div class="askRead"><p id="readPrompt">Have you finished reading this?</p><input type="checkbox" id="readStatus" name="readStatus"></div>
+                    <input type="submit" value="submit" id="submitButton"><br>
                     <button id="closeButton" onclick="">Cancel</button>
                 </form>
             </dialog>
