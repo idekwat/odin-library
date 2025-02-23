@@ -70,6 +70,8 @@ body {
             font-size: 1.8em;
             margin: 10px auto 10px auto;
             text-shadow: 1px black;
+            text-overflow: hidden;
+            word-wrap: break-word;
         }
 
         #displayAuthor {
@@ -80,6 +82,18 @@ body {
         #displayPages {
             font-size: 0.6em;
             margin-bottom: 10px;
+        }
+
+        #toggleButton {
+            margin-top: 20px;
+            height: 3em;
+            width: 5em;
+        }
+
+        #delButton {
+            margin-top: 20px;
+            height: 3em;
+            width: 5em;
         }
     }
 
