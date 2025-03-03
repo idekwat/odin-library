@@ -8,12 +8,23 @@ const submitData = document.getElementById("submitButton");
 const bookColumn = document.querySelector(".bookList");
 const myBooks = document.getElementById("myBooks");
 
+
+/*  refactored to class
 //Book constructor
 function Book(title, author, pages, readval) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.readval = readval;
+} */
+
+class Book {
+    constructor(title, author, pages, readval) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.readval = readval;
+    }
 }
 
 //prototype for toggling if Book is read/unread
